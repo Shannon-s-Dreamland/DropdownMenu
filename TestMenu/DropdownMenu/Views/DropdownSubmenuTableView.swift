@@ -199,7 +199,7 @@ extension DropdownTableViewSubmenuSinlgeView: DropdownSubmenu {
     }
     
     func selectItemAtIndex(index: DropdownSubmenuIndex) {
-        if let mainIndex = index.mainSubmenuIndex {
+        if let mainIndex = index.main {
             selectRowAtIndexPath(NSIndexPath(forRow: mainIndex, inSection: 0), animated: false, scrollPosition: .Top)
         }
     }
@@ -282,10 +282,11 @@ extension DropdownTableViewSubmenuDoubleView: DropdownSubmenu  {
     }
     
     func selectItemAtIndex(index: DropdownSubmenuIndex) {
-        if let mainIndex = index.mainSubmenuIndex {
-            mainView.selectRowAtIndexPath(NSIndexPath(forRow: mainIndex, inSection: 0), animated: false, scrollPosition: .Top)
-        } else if let secondaryIndex = index.secondarySubmenuIndex {
-            secondaryView.selectRowAtIndexPath(NSIndexPath(forRow: secondaryIndex, inSection: 0), animated: false, scrollPosition: .Top)
+        if let mainIndex = index.main {
+            mainView.selectRowAtIndexPath(NSIndexPath(forRow: mainIndex, inSection: 0), animated: false, scrollPosition: .None)
+        }
+        if let secondaryIndex = index.secondary {
+            secondaryView.selectRowAtIndexPath(NSIndexPath(forRow: secondaryIndex, inSection: 0), animated: false, scrollPosition: .None)
         }
     }
     

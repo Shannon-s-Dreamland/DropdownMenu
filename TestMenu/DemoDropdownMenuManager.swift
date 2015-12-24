@@ -25,7 +25,7 @@ class DemoDropdownMenuManager: DropdownMenuManager {
     func mainMenuItemAtIndexSelected(index: Int) {
         if index == currentlySelectedIndex {
             menuVC?.animateHideSubmenu()
-            currentlySelectedIndex = nil
+            resetSelectionState()
             return
         }
         currentlySelectedIndex = index
@@ -41,8 +41,12 @@ class DemoDropdownMenuManager: DropdownMenuManager {
         }
     }
     
+    func resetSelectionState() {
+        currentlySelectedIndex = nil
+    }
+    
     func didSelectSubmenuAtIndex(index: DropdownSubmenuIndex) {
-        print("\(index.mainSubmenuIndex) \(index.secondarySubmenuIndex)")
+        print("\(index.main) \(index.secondary)")
     }
     
     func numberOfSectionsInSubmenu(isMainSubmenu: Bool) -> Int {

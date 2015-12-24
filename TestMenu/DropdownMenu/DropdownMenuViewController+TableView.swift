@@ -23,15 +23,15 @@ extension DropdownMenuViewController: UITableViewDelegate {
         
         switch submenuType {
         case .TableViewSingleView:
-            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
             animateHideSubmenu()
         case .TableViewDoubleView:
             if let type = DropdownTableViewSubmenuDoubleViewType(rawValue: tableView.tag) {
                 switch type {
                 case .Main:
-                    menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+                    menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
                 case .Secondary:
-                    menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(mainSubmenuIndex: nil, secondarySubmenuIndex: indexPath.row))
+                    menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(main: nil, secondary: indexPath.row))
                     animateHideSubmenu()
                 }
             }
@@ -103,7 +103,7 @@ extension DropdownMenuViewController: UITableViewDataSource {
         switch submenuType {
         case .TableViewSingleView:
             if let cell = tableView.dequeueReusableCellWithIdentifier(DropdownMenuConfiguration.cellIdentifier) as? DropdownTableViewSubmenuSinlgeViewCell {
-                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
                 return cell
             }
         case .TableViewDoubleView:
@@ -111,12 +111,12 @@ extension DropdownMenuViewController: UITableViewDataSource {
                 switch type {
                 case .Main:
                     if let cell = tableView.dequeueReusableCellWithIdentifier(DropdownMenuConfiguration.cellIdentifier) as? DropdownSubmenuMainViewCell {
-                        cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+                        cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
                         return cell
                     }
                 case .Secondary:
                     if let cell = tableView.dequeueReusableCellWithIdentifier(DropdownMenuConfiguration.cellIdentifier) as? DropdownSubmenuSecondaryViewCell {
-                        cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(mainSubmenuIndex: nil, secondarySubmenuIndex: indexPath.row))
+                        cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(main: nil, secondary: indexPath.row))
                         return cell
                     }
                 }

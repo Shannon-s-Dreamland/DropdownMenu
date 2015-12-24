@@ -152,7 +152,7 @@ class DropdownMenuViewController: UIViewController {
         view.frame = DropdownMenuConfiguration.mainMenuFrame
         
         mainMenu.setTitleForSelectedItem(currentlySelectedSubmenu?.title)
-        
+        menuManager?.resetSelectionState()
         menuManager?.reloadData()
     }
     

@@ -276,9 +276,10 @@ extension DropdownCollectionViewSubmenu: DropdownSubmenu  {
     }
     
     func selectItemAtIndex(index: DropdownSubmenuIndex) {
-        if let mainIndex = index.mainSubmenuIndex {
+        if let mainIndex = index.main {
             selectItemAtIndexPath(NSIndexPath(forRow: mainIndex, inSection: 0), animated: false, scrollPosition: .Top)
-        } else if let secondaryIndex = index.secondarySubmenuIndex {
+        }
+        if let secondaryIndex = index.secondary {
             selectItemAtIndexPath(NSIndexPath(forRow: secondaryIndex, inSection: 1), animated: false, scrollPosition: .Top)
         }
     }

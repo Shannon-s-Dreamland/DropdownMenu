@@ -29,10 +29,10 @@ extension DropdownMenuViewController: UICollectionViewDelegate {
         }
         
         if indexPath.section == 0 {
-            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
         }
         else if indexPath.section == 1 {
-            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(mainSubmenuIndex: nil, secondarySubmenuIndex: indexPath.row))
+            menuManager?.didSelectSubmenuAtIndex(DropdownSubmenuIndex(main: nil, secondary: indexPath.row))
         }
     }
 }
@@ -51,9 +51,9 @@ extension DropdownMenuViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DropdownMenuConfiguration.cellIdentifier, forIndexPath: indexPath) as? DropdownCollectionViewCell {
             if indexPath.section == 0 {
-                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(mainSubmenuIndex: indexPath.row, secondarySubmenuIndex: nil))
+                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(main: indexPath.row, secondary: nil))
             } else {
-                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(mainSubmenuIndex: nil, secondarySubmenuIndex: indexPath.row))
+                cell.titleLabel.text = menuManager?.titleForDropdownSubmenuIndex(DropdownSubmenuIndex(main: nil, secondary: indexPath.row))
             }
             return cell
         } else {

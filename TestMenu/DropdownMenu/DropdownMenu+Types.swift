@@ -31,11 +31,19 @@ protocol DropdownMenuManager: DropdownMenuDelegate {
     
     // Toggle Open
     func toggleOpenState(state: Bool)
+    
+    // Reset state
+    func resetSelectionState()
 }
 
 // MARK: - Submenu Index
 
 struct DropdownSubmenuIndex {
-    let mainSubmenuIndex: Int?
-    let secondarySubmenuIndex: Int?
+    var main: Int?
+    var secondary: Int?
+    
+    init(main: Int?, secondary: Int?) {
+        self.main = main
+        self.secondary = secondary
+    }
 }
